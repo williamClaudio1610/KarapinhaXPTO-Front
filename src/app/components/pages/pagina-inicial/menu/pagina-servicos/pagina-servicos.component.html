@@ -1,34 +1,35 @@
 <app-pagina-inicial></app-pagina-inicial>
 <div class="container-fluid mt-6">
-  <h2 class="my-4">Categoria</h2>
+  <h2 class="my-4 text-center">Categorias</h2>
 
-  <div class="row">
-    <!-- Menu Lateral -->
-    <div class="col-md-3">
-      <div class="list-group">
-        <a *ngFor="let category of getPaginatedCategories()" 
-           class="list-group-item list-group-item-action"
-           (click)="selectCategory(category)"
-           [ngClass]="{ 'selected': category === selectedCategory }">
+  <!-- Menu Superior -->
+  <div class="row mb-4">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="btn-group">
+        <button *ngFor="let category of getPaginatedCategories()" 
+                class="btn btn-outline-primary"
+                (click)="selectCategory(category)"
+                [ngClass]="{ 'selected': category === selectedCategory }">
           {{ category.nome }}
-        </a>
+        </button>
       </div>
     </div>
+  </div>
 
-    <!-- Conteúdo Central -->
-    <div class="col-md-9">
+  <!-- Conteúdo Central -->
+  <div class="row">
+    <div class="col-12">
       <div *ngIf="selectedCategory" class="card">
-        <div class="card-body">
+        <div class="card-body text-center">
           <h5 class="card-title">{{ selectedCategory.nome }}</h5>
           <p class="card-text">{{ selectedCategory.descricao }}</p>
-          <img src="./assets/{{selectedCategory.foto}}" alt="" width="400px" height="400px">
 
           <div class="container mt-6">
             <div class="row">
               <ng-container *ngFor="let service of servicos; let i = index">
-                <div class="col-md-4" *ngIf="service.categoriaId === selectedCategory.id">
-                  <div class="card">
-                    <img class="card-img-top" src="./assets/{{service.imagem}}" alt="Imagem do serviço" width="100" height="350">
+                <div class="col-md-4 mb-4" *ngIf="service.categoriaId === selectedCategory.id">
+                  <div class="card h-100">
+                    <img class="card-img-top" src="./assets/{{service.imagem}}" alt="Imagem do serviço" style="height: 250px; object-fit: cover;">
                     <div class="card-body">
                       <h5 class="card-title">{{ service.nome }}</h5>
                       <p class="card-text">{{ service.descricao }}</p>
@@ -37,8 +38,6 @@
                     </div>
                   </div>
                 </div>
-
-              
               </ng-container>
             </div>
           </div>
@@ -47,6 +46,5 @@
     </div>
   </div>
 </div>
-
 
 <app-footer></app-footer>
