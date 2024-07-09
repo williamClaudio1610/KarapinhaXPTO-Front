@@ -39,9 +39,6 @@ export class LoginComponent  implements OnInit{
    
   }
 
-
-
-
   fazerLogin() {
     const { username, password } = this.user; // Extrai o nome de usuário e a senha do objeto this.user
     

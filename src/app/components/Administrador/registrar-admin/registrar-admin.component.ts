@@ -51,7 +51,7 @@ export class RegistrarAdminComponent  implements OnInit{
 
    }
    blockChars: RegExp = /^[^!«»£€§@#$%^&*ºª()_+=\-´´`~\\[\]{};:"',<.>/?|]+$/;
-   blockCharsN: RegExp =/^[^ !«»£€§#$%^&*ºª()_+=\-´´`~\\[\]{};:"',<.>/?|]+$/;
+   blockCharsN: RegExp =/^[^ !«»£€§#$%^&*ºª()_+=\-´´`~\\[\]{};:"',<>/?|]+$/;
    blockChars1: RegExp = /^[^!1234567890«»£€§@#$%^&*ºª()_+=\-´´`~\\[\]{};:"',<.>/?|]+$/;
 
   botaoDesabilitado = true;

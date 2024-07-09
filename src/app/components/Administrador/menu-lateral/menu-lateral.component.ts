@@ -48,9 +48,9 @@ export class MenuLateralComponent implements OnInit{
       private profissionalService: ProfissionalServiceService, 
       private marcacaoService: MarcacaoServiceService, 
       private route: Router,
-       private userService: UtilizadorServicoService, 
-        private messageService: MessageService,
-        private servicoService: ServicoxptoService, 
+      private userService: UtilizadorServicoService, 
+      private messageService: MessageService,
+      private servicoService: ServicoxptoService, 
         private categoriaService: CategoriaServicoService) {}
     @HostListener('window:scroll', [])
     onWindowScroll() {
