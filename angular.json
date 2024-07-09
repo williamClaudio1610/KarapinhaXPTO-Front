@@ -1,0 +1,118 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+      "Karapinha-Xpto": {
+        "root": "",
+        "sourceRoot": "src",
+        "projectType": "application",
+        "prefix": "app",
+        "schematics": {},
+        "architect": {
+          "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+              "outputPath": "dist/Karapinha-Xpto",
+              "index": "src/index.html",
+              "main": "src/main.ts",
+              "polyfills": ["zone.js"],
+              "tsConfig": "tsconfig.app.json",
+              "assets": [
+                "src/Karapinha-XPTO.ico",
+                "src/assets"
+              ],
+              "styles": [
+                "src/styles.css",
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
+                "node_modules/primeng/resources/primeng.min.css",
+                "node_modules/primeicons/primeicons.css",
+                "node_modules/primeflex/primeflex.css"
+              ],
+              "scripts": [
+                "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+                "node_modules/jquery/dist/jquery.min.js",
+                "./node_modules/jspdf/dist/jspdf.umd.min.js",
+                "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.min.js"
+
+              ]
+            },
+            "configurations": {
+              "production": {
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "2mb",
+                    "maximumError": "5mb"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "2kb",
+                    "maximumError": "4kb"
+                  }
+                ],
+                "fileReplacements": [
+                  {
+                    "replace": "src/environments/environment.ts",
+                    "with": "src/environments/environment.prod.ts"
+                  }
+                ],
+                "outputHashing": "all"
+              },
+              "development": {
+                "buildOptimizer": false,
+                "optimization": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "sourceMap": true,
+                "namedChunks": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+              "production": {
+                "browserTarget": "Karapinha-Xpto:build:production"
+              },
+              "development": {
+                "browserTarget": "Karapinha-Xpto:build:development"
+              }
+            },
+            "defaultConfiguration": "development"
+          },
+          "extract-i18n": {
+            "builder": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "browserTarget": "Karapinha-Xpto:build"
+            }
+          },
+          "test": {
+            "builder": "@angular-devkit/build-angular:karma",
+            "options": {
+              "main": "src/test.ts",
+              "polyfills": ["zone.js", "zone.js/testing"],
+              "tsConfig": "src/tsconfig.spec.json",
+              "karmaConfig": "src/karma.conf.js",
+              "styles": [
+                "src/styles.css"
+              ],
+              "scripts": [
+                 "./node_modules/jspdf/dist/jspdf.umd.min.js",
+                  "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.min.js"
+              ],
+              "assets": [
+                "src/Karapinha-XPTO.ico",
+                "src/assets"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "cli": {
+      "analytics": false
+    }
+  }

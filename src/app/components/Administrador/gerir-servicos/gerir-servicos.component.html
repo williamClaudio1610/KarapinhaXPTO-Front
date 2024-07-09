@@ -1,0 +1,186 @@
+<!-- src/app/components/add-servico/add-servico.component.html -->
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+  <p-toast></p-toast>
+
+  <p-fieldset>
+    
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center text-primary">
+        <span class="pi pi-wrench mr-2 text-lg"></span>
+        <span class="font-bold text-lg">
+          <h4 class="text-center">Gerenciar Serviços </h4>
+        </span>
+      </div>
+    </ng-template>
+    
+    <div class="container mt-4">
+      <div class="container">
+        <button pButton type="button" label="Adicionar Serviço" icon="pi pi-plus" (click)="showAddDialog()"></button>
+
+       <!-- Campo de Pesquisa Global -->
+        <div class="p-inputgroup mb-3">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-search"></i>
+          </span>
+          <input type="text" pInputText placeholder="Pesquisar" (input)="applyFilterGlobal($event)" />
+        </div>
+
+        <!-- Tabela com Pesquisa e Rolagem -->
+        <p-table #table [value]="servicos" [paginator]="true" [rows]="10" [globalFilterFields]="['nome', 'descricao']" [scrollable]="true" scrollHeight="400px">
+          <ng-template pTemplate="header">
+            <tr>
+              <th *ngIf="isVisible"  >ID</th>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Imagem</th>
+              <th>Preço</th>
+              <th>Categoria</th>
+              <th>Ações</th>
+            </tr>
+          </ng-template>
+          
+          <ng-template pTemplate="body" let-servico>
+            <tr>
+              <td *ngIf="isVisible"  >{{ servico.id }}</td>
+              <td>{{ servico.nome }}</td>
+              <td>{{ servico.descricao }}</td>
+              <td><img src="./assets/{{servico.imagem}}" alt="{{servico.nome}}" width="50"></td>
+              <td>{{ servico.preco | currency:' KZ ' }}</td>
+              <td>{{ obterNomeCategoria(servico.categoriaId) }}</td>
+              <td>
+                <button pButton type="button" icon="pi pi-pencil"  (click)="abrirModalAtualizacao(servico)"></button>
+                <button pButton type="button" icon="pi pi-trash" (click)="eliminarServico(servico.id)"></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        
+        <p-dialog header="Adicionar Serviço" [(visible)]="displayAddDialog" modal="modal" [style]="{width: '500px'}">
+          <form (ngSubmit)="onSubmit(servicoForm)" #servicoForm="ngForm">
+            <div class="p-fluid">
+              <div class="p-field">
+                <label for="nome">Nome <span class="required">*</span></label>
+                <input id="nome" type="text" pInputText [(ngModel)]="newServico.nome" name="nome" required />
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.nome?.valid" class="error-message">
+                  Nome é obrigatório.
+                </div>
+              </div>
+              <div class="p-field">
+                <label for="descricao">Descrição <span class="required">*</span></label>
+                <textarea id="descricao" pInputTextarea [(ngModel)]="newServico.descricao" name="descricao" rows="3" cols="30" required></textarea>
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.descricao?.valid" class="error-message">
+                  Descrição é obrigatória.
+                </div>
+              </div>
+              <div class="p-field">
+                <label for="imagem">Imagem <span class="required">*</span></label>
+                <p-fileUpload  #fileUploadComponent name="imagem" accept="image/*" (onSelect)="onFileSelect($event, fileUploadComponent, 'newServico')" mode="basic" auto="true" chooseLabel="{{ truncatedFileName }}" required></p-fileUpload>
+                <img *ngIf="newServico.imagem" [src]="newServico.imagem" alt="Imagem do Serviço" style="margin-top: 10px; width: 100px; height: 100px;">
+                <div *ngIf="servicoForm.submitted && !newServico.imagem" class="error-message">
+                  Imagem é obrigatória.
+                </div>
+              </div>
+              <div class="p-field">
+                <label for="preco">Preço <span class="required">*</span></label>
+                <input id="preco" type="number" pInputText [(ngModel)]="newServico.preco" name="preco" required />
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.preco?.valid" class="error-message">
+                  Preço é obrigatório.
+                </div>
+              </div>
+              <div class="p-field">
+                <label for="categoria">Categoria <span class="required">*</span></label>
+                <p-dropdown 
+                  [options]="categorias" 
+                  [(ngModel)]="newServico.categoriaId" 
+                  name="categoria" 
+                  optionLabel="label" 
+                  optionValue="valor"  
+                  placeholder="Selecione uma categoria"
+                  required>
+                </p-dropdown>
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.categoria?.valid" class="error-message">
+                  Categoria é obrigatória.
+                </div>
+              </div>
+            </div>
+            <p-footer>
+              <button pButton type="submit" label="Salvar"></button>
+            </p-footer>
+          </form>
+        </p-dialog>
+
+
+
+        <p-dialog header="Atualizar Serviço" [(visible)]="displayUpdateDialog" modal [style]="{width: '500px'}">
+          <form (ngSubmit)="atualizarServico()" #servicoForm="ngForm">
+            <div class="p-fluid">
+              <!-- Campos para atualização do serviço -->
+              <div class="p-field">
+                <label for="id" *ngIf="isVisible" >ID</label>
+                <input  *ngIf="isVisible" id="id" type="number" pInputText [(ngModel)]="servicoSelecionado.id" name="id" required disabled />
+              </div>
+              <div class="p-field">
+                <label for="nome">Nome <span class="required">*</span></label>
+                <input id="nome" type="text" pInputText [(ngModel)]="servicoSelecionado.nome" name="nome" required />
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.nome?.valid" class="error-message">
+                  Nome é obrigatório.
+                </div>
+              </div>
+              <div class="p-field">
+                <label for="descricao">Descrição <span class="required">*</span></label>
+                <textarea id="descricao" pInputTextarea [(ngModel)]="servicoSelecionado.descricao" name="descricao" rows="3" cols="30" required></textarea>
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.descricao?.valid" class="error-message">
+                  Descrição é obrigatória.
+                </div>
+              </div>
+              <div class="p-field">
+                <label for="imagem">Imagem</label>
+                <p-fileUpload 
+                  #fileUploadComponent
+                  name="imagem" 
+                  accept="image/*"  
+                  (onSelect)="onFileSelect($event, fileUploadComponent, 'servicoSelecionado')" 
+                  mode="basic" 
+                  auto="true" 
+                  chooseLabel="{{ truncatedFileName }}"></p-fileUpload>
+                <img *ngIf="servicoSelecionado.imagem" [src]="servicoSelecionado.imagem" alt="Imagem do Serviço" style="margin-top: 10px; width: 100px; height: 100px;">
+              </div>
+              <div class="p-field">
+                <label for="preco">Preço <span class="required">*</span></label>
+                <input id="preco" type="number" pInputText [(ngModel)]="servicoSelecionado.preco" name="preco" required />
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.preco?.valid" class="error-message">
+                  Preço é obrigatório.
+                </div>
+              </div>
+              <div class="p-field">
+                <label for="categoria">Categoria <span class="required">*</span></label>
+                <p-dropdown 
+                  [options]="categorias" 
+                  [(ngModel)]="servicoSelecionado.categoriaId" 
+                  name="categoria" 
+                  optionLabel="label" 
+                  optionValue="valor"  
+                  placeholder="Selecione uma categoria"
+                  required>
+                </p-dropdown>
+                <div *ngIf="servicoForm.submitted && !servicoForm.controls.categoria?.valid" class="error-message">
+                  Categoria é obrigatória.
+                </div>
+              </div>
+            </div>
+            <p-footer>
+              <button pButton type="submit" label="Salvar"></button>
+              <button pButton type="button" label="Cancelar" (click)="fecharModalAtualizacao()"></button>
+            </p-footer>
+          </form>
+        </p-dialog>
+
+
+        <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+      </div>
+    </div>
+  </p-fieldset>
+</div>
+<app-footer></app-footer>

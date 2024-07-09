@@ -1,0 +1,189 @@
+<!-- src/app/components/add-servico/add-servico.component.html -->
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+  <p-toast></p-toast>
+
+  <p-fieldset>
+    
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center text-primary">
+        <span class="pi pi-wrench mr-2 text-lg"></span>
+        <span class="font-bold text-lg">
+          <h4 class="text-center">Confirmar Marcações</h4>
+        </span>
+      </div>
+    </ng-template>
+    
+      <div class="container">
+      
+        <!-- Campo de Pesquisa Global -->
+        <div class="p-inputgroup mb-3">
+            <span class="p-inputgroup-addon">
+            <i class="pi pi-search"></i>
+            </span>
+            <input type="text" pInputText placeholder="Pesquisar" (input)="applyFilterGlobal($event)" />
+        </div>
+
+ 
+        <!-- Tabela com Pesquisa e Rolagem -->
+        <p-table
+               #table 
+
+                [value]="marcacoes"
+                [paginator]="true"
+                [rows]="10"
+                [globalFilterFields]="['status', 'totalPagar', 'dataRegistro']"
+                [scrollable]="true"
+                scrollHeight="auto"
+                styleClass="adjusted-table"
+                >
+                <ng-template pTemplate="header">
+                    <tr>
+                    <th>Categoria</th>
+                    <th>Serviço</th>
+                    <th>Profissional</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Preço</th>
+                    <th>Estado</th>
+                    <th>Operações</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-marcacao>
+                    <!-- Lista de Serviços Marcados -->
+                    <tr *ngFor="let servicoMarcado of marcacao.servicosMarcados"
+                    [ngClass]="{
+                        'marcacao-destaque': servicoMarcado.dataAnterior !== null && servicoMarcado.horaAnterior !== null,
+                        'marcacao-verde': marcacao.status === true
+                        }">
+                    <td>{{ getCategoria(servicoMarcado.servicoId) }}</td>
+                    <td>{{ getServico(servicoMarcado.servicoId) }}</td>
+                    <td>{{ getProfissional(servicoMarcado.profissionalId) }}</td>
+                    <td>{{ servicoMarcado.data | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ servicoMarcado.hora }}</td>
+                    <td>{{ getPreco(servicoMarcado.servicoId) | currency }}</td>
+                    <td>{{ marcacao.status ? 'Ativo' : 'Inativo' }}</td>
+                    <td>
+                        <!-- Botão de Reagendar -->
+                        <button *ngIf="marcacao.status === false" class="btn btn-secondary" pButton type="button" icon="pi pi-calendar" (click)="abrirModalAtualizacao(servicoMarcado.profissionalId , servicoMarcado.id)">Reagendar</button>
+                    </td>
+                    </tr>
+                    <!-- Linha para Total a Pagar e Botão de Confirmar Marcação -->
+                    <tr>
+                    <td colspan="7"><strong>Total:</strong> {{ marcacao.totalPagar | currency }}</td>
+                    <td>
+                        <button *ngIf="marcacao.status === false"  class="btn btn-primary" (click)="confirmarMarcacao(marcacao.id)" [disabled]="marcado">
+                        Confirmar Marcação
+                        </button>
+                    </td>
+                    </tr>
+                    <tr><td colspan="8" class="barreira_Cor"><hr></td></tr>
+                </ng-template>
+        </p-table>
+
+
+
+      <p-dialog header="Reagendar Marcação" [(visible)]="displayUpdateDialog" modal="true" [style]="{width: '700px', height:'600px'}">
+        <form #servicoForm="ngForm" (ngSubmit)="atualizarServicoMarcacao(servicoForm)">
+          <div class="p-fluid">
+            <!-- Seleção de Profissional e Data -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="profissional">Selecione o Profissional</label>
+                  <p-dropdown 
+                    [options]="filtrarProfissionaisPorServico()" 
+                    [(ngModel)]="profissionalSelecionado" 
+                    optionLabel="nome" 
+                    placeholder="Selecione o Profissional"
+                    (onChange)="filtrarHorariosPorProfissional()"
+                    emptyMessage="Nenhum Profissional disponível"
+                    inputId="profissional"
+                    name="profissionalSelecionado"
+                    filter="true"
+                    required>
+                    <ng-template let-profissional pTemplate="item">
+                      <div class="flex align-items-center">
+                        <img src="./assets/{{profissional.foto}}" alt="{{ profissional.nome }}" width="30" class="mr-2">
+                        <span>{{ profissional.nome }}</span>
+                      </div>
+                    </ng-template>
+                    <ng-template let-profissional pTemplate="selectedItem">
+                      <div class="flex align-items-center">
+                        <img src="./assets/{{profissional?.foto}}" alt="{{ profissional?.nome }}" width="30" class="mr-2">
+                        <span>{{ profissional?.nome }}</span>
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
+                  <!-- Mensagem de erro se o profissional não for selecionado -->
+                  <div *ngIf="servicoForm.submitted && !profissionalSelecionado" class="text-danger">
+                    Selecione um profissional.
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="data">Selecione a Data</label>
+                  <input 
+                    type="date" 
+                    class="form-control" 
+                    [(ngModel)]="dataSelecionada"
+                    [min]="getMinDate()"
+                    inputId="data"
+                    [ngModelOptions]="{ standalone: true }" 
+                    name="dataSelecionada"
+                    (change)="filtrarHorariosPorProfissional()"
+                    required>
+                  <!-- Mensagem de erro se a data não for selecionada -->
+                  <div *ngIf="servicoForm.submitted && !dataSelecionada" class="text-danger">
+                    Selecione uma data.
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Seleção de Horário -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="horario">Selecione o Horário</label>
+                  <p-dropdown 
+                    [options]="horariosDisponiveis" 
+                    [(ngModel)]="horaSelecionada"
+                    optionLabel="hora"
+                    placeholder="Selecione o Horário"
+                    emptyMessage="Nenhum horário disponível"
+                    inputId="horario"
+                    filter="true"
+                    name="horaSelecionada"
+                    [ngModelOptions]="{ standalone: true }" 
+                    required>
+                  </p-dropdown>
+                  <!-- Mensagem de erro se o horário não for selecionado -->
+                  <div *ngIf="servicoForm.submitted && (!horaSelecionada || horaSelecionada === '00:00:00')" class="text-danger">
+                    Selecione um horário válido (não pode ser 00:00:00).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p-footer>
+            <button pButton type="submit" label="Reagendar" [disabled]="servicoForm.invalid"></button>
+            <button pButton type="button" label="Cancelar" (click)="fecharModalAtualizacao()"></button>
+          </p-footer>
+        </form>
+      </p-dialog>
+      
+      
+        
+
+
+        <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+      </div>
+    
+  </p-fieldset>
+</div>
+<app-footer></app-footer>

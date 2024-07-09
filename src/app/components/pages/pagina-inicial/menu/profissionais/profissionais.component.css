@@ -1,0 +1,64 @@
+/* professionals.component.css */
+.professionals-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .professional-card {
+    width: 30%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .professional-card:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .professional-details {
+    font-weight: bold;
+  }
+  
+  .selected-professional {
+    background-color: #f0f0f0;
+  }
+  
+  .professional-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .professional-info {
+    display: flex;
+    align-items: center;
+  }
+  
+
+  .card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 425px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .align-items-center{
+    display: flex;
+    justify-content: center;
+ }

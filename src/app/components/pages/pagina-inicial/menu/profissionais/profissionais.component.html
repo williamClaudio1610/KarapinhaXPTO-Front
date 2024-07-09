@@ -1,0 +1,64 @@
+<app-pagina-inicial></app-pagina-inicial>
+
+<div class="card">
+  <p-fieldset>
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center text-primary">
+        <span class="pi pi-users mr-2 text-lg-Cal"></span>
+        <span class="font-bold text-lg">
+          <h4>Profissionais</h4>
+        </span>
+      </div>
+    </ng-template>
+
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Menu lateral com a lista de profissionais -->
+        <div class="col-md-4">
+          <div class="list-group">
+            <a *ngFor="let professional of profissionais" class="list-group-item list-group-item-action"
+               (click)="selectProfessional(professional)">
+              <img src="./assets/{{professional.foto}}" alt="{{ professional.nome }}" class="mr-2" width="30">
+              {{ professional.nome }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Área principal com detalhes do profissional selecionado -->
+        <div class="col-md-8">
+          <div *ngIf="selectedProfessional" class="card">
+            <div class="card-header">
+              Detalhes do Profissional
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ selectedProfessional.nome }}</h5>
+              <img src="./assets/{{selectedProfessional.foto}}" alt="{{ selectedProfessional.nome }}" class="mb-3" width="150">
+
+              <!-- Mostrar especialidades -->
+              <div *ngIf="selectedProfessional.profissionalCategorias.length > 0" class="card-text">
+                <strong>Especialidades:</strong>
+                <ul>
+                  <li *ngFor="let categoria of selectedProfessional.profissionalCategorias">
+                    {{ categoria.categoria.nome }}
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Mostrar horários -->
+              <div *ngIf="selectedProfessional.horarios.length > 0" class="card-text">
+                <strong>Horários de Trabalho:</strong>
+                <ul>
+                  <li *ngFor="let horario of selectedProfessional.horarios">
+                    {{ horario.horario.hora }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-fieldset>
+</div>
+
+<app-footer></app-footer>

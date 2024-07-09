@@ -1,0 +1,41 @@
+/* Estilos para o contêiner principal */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  /* Estilos para os cabeçalhos */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para os parágrafos */
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para as colunas */
+  .col-md-6 {
+    width: 50%;
+    float: left;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos para o layout responsivo */
+  @media (max-width: 768px) {
+    .col-md-6 {
+      width: 100%;
+      float: none;
+      padding: 0;
+    }
+  }
+  

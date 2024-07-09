@@ -1,0 +1,25 @@
+
+<div class="principal">
+  <div class="wrapper">
+    <form class="form" id="login" (ngSubmit)="fazerLogin()">
+      <h1>Karapinha XPTO</h1>
+      <div class="input-box">
+        <input pInputText type="text" id="username" [(ngModel)]="user.username" name="username" [pKeyFilter]="blockChars" placeholder="Nome de Usuário">
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input pInputText type="{{ mostrarSenha ? 'text' : 'password' }}" id="password1" [(ngModel)]="user.password" name="password" [pKeyFilter]="blockCharsN" placeholder="Palavra-passe">
+
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+
+      <div class="remember-forgot">
+        <label><input type="checkbox">Lembrar Senha</label>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="register-link">
+        <button id="signin" class="btn btn-primary"  [routerLink]="['/registro']">Criar conta</button>
+      </div>
+    </form>
+  </div>
+</div>

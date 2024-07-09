@@ -1,0 +1,103 @@
+.calendar-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fc {
+    font-family: 'Arial, sans-serif';
+  }
+  
+  .fc-toolbar-title {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .fc-daygrid-day-number {
+    font-size: 1.2em;
+    color: #666;
+  }
+  
+  .fc-event {
+    background-color: #007bff;
+    border-color: #0056b3;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .fc-event:hover {
+    background-color: #0056b3;
+  }
+  
+  .fc-daygrid-day {
+    transition: background-color 0.3s;
+  }
+  
+  .fc-daygrid-day:hover {
+    background-color: #e3f2fd;
+  }
+  
+  .fc-day-today {
+    background-color: #ffeb3b !important;
+  }
+  
+  .fc-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .fc-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .fc-button-primary:not(:disabled).fc-button-active {
+    background-color: #004080;
+  }
+  
+  .fc-button-primary:disabled {
+    background-color: #007bff;
+    opacity: 0.5;
+  }
+  
+  .fc-view {
+    border: none;
+  }
+  
+  /* Estilos para o PrimeNG Dialog */
+  .p-dialog .p-dialog-header {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .p-dialog .p-dialog-footer {
+    text-align: right;
+  }
+  
+  .p-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+  }
+  
+  .p-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .p-dialog .p-fluid .p-field {
+    margin-bottom: 1em;
+  }
+  .text-center {
+    text-align: center !important;
+  }
+  .align-items-center{
+    display: flex;
+    justify-content: center;
+   }

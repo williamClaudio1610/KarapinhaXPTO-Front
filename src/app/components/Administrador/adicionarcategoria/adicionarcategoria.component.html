@@ -1,0 +1,96 @@
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+    <p-toast></p-toast>
+
+     
+    <p-fieldset>
+      
+  
+     <ng-template pTemplate="header">
+      <div class="flex align-items-center text-primary">
+        <span class="pi pi-wrench mr-2 text-lg"></span>
+        <span class="font-bold text-lg">
+          <h4 class="text-center">Gerenciar Categorias </h4>
+        </span>
+      </div>
+    </ng-template>
+
+      
+        
+        <div class="container mt-4">
+          <div class="container">
+            <button pButton type="button" label="Adicionar Categoria" icon="pi pi-plus" (click)="showAddDialog()"></button>
+        <!-- Campo de Pesquisa Global -->
+<div class="p-inputgroup mb-3">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-search"></i>
+    </span>
+    <input type="text" pInputText placeholder="Pesquisar" (input)="applyFilterGlobal($event)" />
+  </div>
+  
+  <!-- Tabela com Pesquisa e Rolagem -->
+  <p-table #table [value]="categorias" [paginator]="true" [rows]="10" [globalFilterFields]="['nome', 'descricao']" [scrollable]="true" scrollHeight="400px">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Imagem</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-categoria>
+      <tr>
+        <td>{{ categoria.id }}</td>
+        <td>{{ categoria.nome }}</td>
+        <td>{{ categoria.descricao }}</td>
+        <td><img src="./assets/{{categoria.foto}}" alt="{{ categoria.nome }}" width="50"></td>
+        <td>
+            <button pButton type="button" icon="pi pi-pencil" (click)="editCategoria(categoria)"></button>
+            <button pButton type="button" icon="pi pi-trash" (click)="deleteCategoria(categoria.id)"></button>
+          </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  
+
+            <p-dialog header="Adicionar Categoria" [(visible)]="displayAddDialog" modal="modal" [style]="{width: '300px'}">
+                <div class="p-fluid">
+                    <!-- Campo Nome -->
+                    <div class="p-field">
+                        <label for="nome">Nome</label>
+                        <input id="nome" type="text" pInputText [(ngModel)]="newCategoria.nome" required />
+                        <div *ngIf="!newCategoria.nome && showValidationMessages" class="p-error">Nome é obrigatório.</div>
+                    </div>
+            
+                    <!-- Campo Descrição -->
+                    <div class="p-field">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" pInputTextarea [(ngModel)]="newCategoria.descricao" rows="3" cols="30" required></textarea>
+                        <div *ngIf="!newCategoria.descricao && showValidationMessages" class="p-error">Descrição é obrigatória.</div>
+                    </div>
+            
+                    <!-- Campo Imagem -->
+                    <div class="p-field">
+                        <label for="foto">Imagem</label>
+                        <p-fileUpload  #fileUploadComponent name="foto" accept="image/*" (onSelect)="onFileSelect($event, fileUploadComponent)" mode="basic" auto="true" chooseLabel="{{ truncatedFileName }}"></p-fileUpload>
+                        <img *ngIf="selectedFileURL" [src]="selectedFileURL" alt="Pré-visualização da Imagem" style="margin-top: 10px; width: 100px; height: 100px;">
+                        <div *ngIf="!selectedFile && showValidationMessages" class="p-error">Imagem é obrigatória.</div>
+                    </div>
+
+
+                   
+
+
+                </div>
+                <p-footer>
+                    <button pButton type="button" label="Salvar" (click)="addCategoria()"></button>
+                </p-footer>
+            </p-dialog>
+            <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+          </div>
+        </div>
+    </p-fieldset>
+</div>
+<app-footer></app-footer>

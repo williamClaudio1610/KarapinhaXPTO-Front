@@ -1,0 +1,52 @@
+<app-pagina-inicial></app-pagina-inicial>
+<div class="container-fluid mt-6">
+  <h2 class="my-4">Categoria</h2>
+
+  <div class="row">
+    <!-- Menu Lateral -->
+    <div class="col-md-3">
+      <div class="list-group">
+        <a *ngFor="let category of getPaginatedCategories()" 
+           class="list-group-item list-group-item-action"
+           (click)="selectCategory(category)"
+           [ngClass]="{ 'selected': category === selectedCategory }">
+          {{ category.nome }}
+        </a>
+      </div>
+    </div>
+
+    <!-- Conteúdo Central -->
+    <div class="col-md-9">
+      <div *ngIf="selectedCategory" class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedCategory.nome }}</h5>
+          <p class="card-text">{{ selectedCategory.descricao }}</p>
+          <img src="./assets/{{selectedCategory.foto}}" alt="" width="400px" height="400px">
+
+          <div class="container mt-6">
+            <div class="row">
+              <ng-container *ngFor="let service of servicos; let i = index">
+                <div class="col-md-4" *ngIf="service.categoriaId === selectedCategory.id">
+                  <div class="card">
+                    <img class="card-img-top" src="./assets/{{service.imagem}}" alt="Imagem do serviço" width="100" height="350">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ service.nome }}</h5>
+                      <p class="card-text">{{ service.descricao }}</p>
+                      <p class="card-text text-center preco"><b>{{ service.preco }} kz</b></p>
+                      <button class="btn btn-primary" (click)="onSaberMaisClick($event, service)" data-bs-toggle="modal" data-bs-target="#Marcacao">Agendar</button>
+                    </div>
+                  </div>
+                </div>
+
+              
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,101 @@
+
+  <app-menu-lateral></app-menu-lateral>
+
+<div class="backcor">
+    <div class="container">
+        <div class="content first-content">
+            <div class="first-column">
+                <h2 class="title title-primary">KARAPINHA &nbsp;XPTO </h2>
+            </div>
+            
+            <p-toast></p-toast>
+
+            <div class="second-column">
+                <h5 class="text_div text-center col-md-6"><b>Adicionar Usuário Administrativo</b></h5>
+
+                <form [formGroup]="registerForm" class="form" (ngSubmit)="onSubmit()">
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label htmlFor="Nome" class="placeh">Nome Completo</label>
+                            <input pInputText id="Nome" formControlName="nomeCompleto" [pKeyFilter]="blockChars1" placeholder="Nome Completo"/>
+                            <div *ngIf="f.nomeCompleto.touched && f.nomeCompleto.invalid">
+                                <small *ngIf="f.nomeCompleto.errors?.required">Nome completo é obrigatório.</small>
+                            </div>
+                        </div>
+
+
+                        <div class="input-box">
+                            <label htmlFor="Email" class="placeh">Email</label>
+                            <input pInputText id="Email" formControlName="email" [pKeyFilter]="blockCharsN" placeholder="Email"/>
+                            <div *ngIf="f.email.touched && f.email.invalid">
+                                <small *ngIf="f.email.errors?.required">Email é obrigatório.</small>
+                                <small *ngIf="f.email.errors?.email">Email inválido.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label htmlFor="telefone" class="placeh">Número de Telefone</label>
+                            <input pInputText id="telefone" formControlName="telefone" maxlength="9" pKeyFilter="int" (input)="enforceNineChars($event)" placeholder="+244 9XX-XXX-XXX"/>
+                            <div *ngIf="f.telefone.touched && f.telefone.invalid">
+                                <small *ngIf="f.telefone.errors?.required">Número de telefone é obrigatório.</small>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label htmlFor="bi" class="placeh">Bilhete de Identidade</label>
+                            <input pInputText id="bi" formControlName="bi" maxlength="15" [pKeyFilter]="blockChars" placeholder="XXXXXXXXXAAXXX"/>
+                            <div *ngIf="f.bi.touched && f.bi.invalid">
+                                <small *ngIf="f.bi.errors?.required">O número de BI é obrigatório.</small>
+                                <small *ngIf="f.bi.errors?.invalidBI">O número de BI deve seguir o formato: 9 dígitos, 2 caracteres alfanuméricos, e 3 dígitos finais.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label htmlFor="username" class="placeh">Nome do Usuário</label>
+                            <input pInputText id="username" formControlName="username" [pKeyFilter]="blockChars" placeholder="Nome de Usuário"/>
+                            <div *ngIf="f.username.touched && f.username.invalid">
+                                <small *ngIf="f.username.errors?.required">Nome do usuário é obrigatório.</small>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label htmlFor="password1" class="placeh">Senha</label>
+                            <p-password formControlName="password" [toggleMask]="true" [promptLabel]="'Insira a Senha'" class="inputLabel1 p-inputtext-md" weakLabel="Senha Fraca" mediumLabel="Senha Média" strongLabel="Senha Forte" placeholder="Senha"></p-password>
+                            <div *ngIf="f.password.touched && f.password.invalid">
+                                <small *ngIf="f.password.errors?.required">Senha é obrigatória.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label htmlFor="password2" class="placeh">Confirmar Senha</label>
+                            <p-password formControlName="confirmPassword" [toggleMask]="true" [promptLabel]="'Insira a Senha'" class="inputLabel1 p-inputtext-md" weakLabel="Senha Fraca" mediumLabel="Senha Média" strongLabel="Senha Forte" placeholder="Confirmar Senha"></p-password>
+                            <div *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid">
+                                <small *ngIf="f.confirmPassword.errors?.required">Confirmação de senha é obrigatória.</small>
+                                <small *ngIf="f.confirmPassword.errors?.mustMatch">As senhas não coincidem.</small>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="fotografia" class="placeh">Fotografia</label>
+                            <div class="card flex justify-content-center">
+                                <p-fileUpload #fileUploadComponent mode="basic" styleClass="p-button-secondary" class="inputLabel1 p-inputtext-lg" chooseLabel="{{ truncatedFileName }}" accept="image/*" (onSelect)="onFileSelect($event, fileUploadComponent)">
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-second" type="submit" [disabled]="registerForm.invalid" [disabled]="botaoDesabilitado" onclick="bloquear()">Adicionar</button>
+                    <div class="lines"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer class="meu-footer-estilizado"></app-footer>

@@ -1,0 +1,31 @@
+.gallery {
+    padding-top: 10px;
+    background: #FFFFFF;
+    padding: 50px 0;
+    margin-top: 30px; /* Adiciona espaçamento acima da seção */
+  }
+  
+  .gallery .text-primary {
+    color: #722F25 !important;
+  }
+  
+  .gallery .btn-outline-primary {
+    color: #722F25;
+    border-color: #722F25;
+  }
+  
+  .gallery .btn-outline-primary:hover {
+    background: #722F25;
+    color: #fff;
+  }
+  
+  .gallery img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  

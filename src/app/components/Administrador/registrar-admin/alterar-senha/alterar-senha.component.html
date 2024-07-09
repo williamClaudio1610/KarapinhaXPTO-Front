@@ -1,0 +1,25 @@
+<div class="alterar-senha-container">
+    <h2>Alterar Senha</h2>
+    <form [formGroup]="alterarSenhaForm" (ngSubmit)="onSubmit()">
+      
+      <div  *ngIf="isVisivel" [ngClass]="{'campo-invalido': isCampoInvalido('userId')}">
+        <label for="userId">ID do Usuário</label>
+        <input  id="userId" formControlName="userId" type="number" [(ngModel)]="valorID"  />
+        <div *ngIf="isCampoInvalido('userId')" class="mensagem-erro">ID do Usuário é obrigatório e deve ser um número positivo.</div>
+      </div>
+      <div [ngClass]="{'campo-invalido': isCampoInvalido('senhaAntiga')}">
+        <label for="senhaAntiga">Senha Antiga </label>
+        <input id="senhaAntiga" formControlName="senhaAntiga" type="password" />
+      </div> 
+      <div [ngClass]="{'campo-invalido': isCampoInvalido('novaSenha')}">
+        <label for="novaSenha">Nova Senha</label>
+        <input id="novaSenha" formControlName="novaSenha" type="password" />
+        <div *ngIf="isCampoInvalido('novaSenha')" class="mensagem-erro">Nova Senha é obrigatória e deve ter no mínimo 6 caracteres.</div>
+      </div>
+      
+      <button type="submit" [disabled]="!alterarSenhaForm.valid">Alterar Senha</button>
+    </form>
+  
+    <p-toast></p-toast>
+
+  </div>

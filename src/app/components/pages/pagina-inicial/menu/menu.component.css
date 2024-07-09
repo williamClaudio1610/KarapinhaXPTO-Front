@@ -1,0 +1,122 @@
+.serv_Des{
+
+    margin-top: 130px !important;
+}
+.text-bg-warning {
+  color: white !important;
+}
+.testimonial {
+    position: relative;
+  }
+  
+  .testimonial-img {
+    transition: transform 0.3s ease;
+    width: 200px; /* Defina o tamanho da imagem */
+    height: 200px; /* Igual à largura para garantir que seja uma imagem circular */
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço do círculo */
+    border-radius: 50%; /* Torna a borda da imagem circular */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .testimonial:hover .testimonial-img {
+    transform: scale(1.1);
+  }
+  
+  .testimonial:hover .overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  .perC{
+    width: 100px !important;
+    border-radius: 10px !important;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .container {
+    margin-top: 20px;
+}
+
+.serv_Des h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: center;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.card-text small {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.booking-btn {
+    background-color: #ffc107;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.booking-btn:hover {
+    background-color: #e0a800;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 150px;
+    }
+}

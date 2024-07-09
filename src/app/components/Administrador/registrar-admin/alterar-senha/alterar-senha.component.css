@@ -1,0 +1,84 @@
+/* Estilos gerais do container */
+.alterar-senha-container {
+    max-width: 400px;
+    margin: 20px auto; /* Centraliza o container na tela */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilos para o título */
+  .alterar-senha-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Estilos para os campos de formulário */
+  .alterar-senha-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .alterar-senha-container form div {
+    margin-bottom: 15px;
+  }
+  
+  .alterar-senha-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .alterar-senha-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos para o botão */
+  .alterar-senha-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .alterar-senha-container button[disabled] {
+    background-color: #a9a9a9;
+    cursor: not-allowed;
+  }
+  
+  /* Estilos para as mensagens de resposta */
+  .mensagem {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .sucesso {
+    color: #28a745;
+    border: 1px solid #28a745;
+    background-color: #d4edda;
+  }
+  
+  .erro {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background-color: #f8d7da;
+  }
+
+  .mensagem-erro{
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background-color: #f8d7da;
+
+  }
+  

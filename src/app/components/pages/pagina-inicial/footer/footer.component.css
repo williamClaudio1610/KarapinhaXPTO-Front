@@ -1,0 +1,41 @@
+.footer {
+  background: #722F25;
+  color: #ffffff; /* Define a cor do texto como branca */
+}
+
+.footer a {
+  color: #ffffff; /* Define a cor dos links como branca */
+  transition: 0.3s;
+}
+
+.footer a:hover {
+  color: #ffd700;
+}
+
+.footer .btn-social {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #495057;
+}
+
+.footer .btn-social:hover {
+  background: #f8f9fa;
+  color: #722F25;
+}
+
+.footer ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.text-primary {
+  color: #ffffff !important; /* Altere #ffffff para a cor desejada */
+}

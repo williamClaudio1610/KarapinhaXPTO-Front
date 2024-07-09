@@ -1,0 +1,54 @@
+<!-- agenda-marcacoes.component.html -->
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+    <p-toast></p-toast>
+    <p-fieldset>
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center text-primary">
+                <span class="pi pi-calendar-plus mr-2 text-lg"></span>
+                <span class="font-bold text-lg">
+                    <h4 class="text-center">Agenda Mensal</h4>
+                </span>
+            </div>
+        </ng-template>
+
+        <div class="calendar-container">
+            <full-calendar [options]="calendarOptions"></full-calendar>
+        </div>
+
+        <p-dialog header="Detalhes da Marcação" [(visible)]="displayEventDialog" [modal]="true" [closable]="true" [dismissableMask]="true" [responsive]="true" [style]="{width: '30vw'}">
+            <div class="p-fluid">
+                <div class="p-field">
+                    <label for="profissional">Profissional</label>
+                    <input id="profissional" type="text" pInputText [(ngModel)]="selectedEvent.extendedProps.ProfissionalIdM" disabled />
+                </div>
+                <div class="p-field">
+                    <label for="clienteId">Cliente</label>
+                    <input id="clienteId" type="text" pInputText [(ngModel)]="selectedEvent.extendedProps.clienteId" disabled />
+                </div>
+
+                <div class="p-field">
+                    <label for="servico">Servico</label>
+                    <input id="servico" type="text" pInputText [(ngModel)]="selectedEvent.extendedProps.SerivoIdM" disabled />
+                </div>
+              
+                <div class="p-field">
+                    <label for="HoraMarcacao">Hora</label>
+                    <input id="HoraMarcacao" type="text" pInputText [(ngModel)]="selectedEvent.extendedProps.Hora" disabled />
+                </div>
+                <div class="p-field">
+                    <label for="totalPagar">Total a Pagar</label>
+                    <input id="totalPagar" type="text" pInputText [(ngModel)]="selectedEvent.extendedProps.totalPagar" disabled />
+                </div>
+                <div class="p-field">
+                    <label for="dataRegistro">Data da Marcação</label>
+                    <input id="dataRegistro" type="text" pInputText [(ngModel)]="selectedEvent.extendedProps.dataRegistro" disabled />
+                </div>
+            </div>
+            <p-footer>
+                <button pButton type="button" label="Fechar" icon="pi pi-times" (click)="displayEventDialog=false"></button>
+            </p-footer>
+        </p-dialog>
+    </p-fieldset>
+</div>
+<app-footer></app-footer>

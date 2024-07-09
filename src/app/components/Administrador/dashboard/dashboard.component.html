@@ -1,0 +1,75 @@
+<app-menu-lateral></app-menu-lateral>
+
+<!-- admin-dashboard.component.html -->
+<div class="dashboard-container">
+    <h1 class="dashboard-title">Admin Dashboard</h1>
+   
+    <div class="dashboard-grid">
+        <!-- Faturamento -->
+        <div class="dashboard-card" style="background-color: #42A5F5; color: #fff;">
+            <i class="pi pi-money-bill" style="font-size: 2em;"></i>
+            <div class="card-header">Faturamento Hoje</div>
+            <div class="card-value">{{ faturamentoHoje | currency: ' KZ ' }}</div>
+        </div>
+        <div class="dashboard-card" style="background-color: #FFCA28; color: #fff;">
+            <i class="pi pi-money-bill" style="font-size: 2em;"></i>
+            <div class="card-header">Faturamento Ontem</div>
+            <div class="card-value">{{ faturamentoOntem | currency: ' KZ ' }}</div>
+        </div>
+        <div class="dashboard-card" style="background-color: #66BB6A; color: #fff;">
+            <i class="pi pi-money-bill" style="font-size: 2em;"></i>
+            <div class="card-header">Faturamento Mês Corrente</div>
+            <div class="card-value">{{ faturamentoMesCorrente | currency: ' KZ ' }}</div>
+        </div>
+        <div class="dashboard-card" style="background-color: #AB47BC; color: #fff;">
+            <i class="pi pi-money-bill" style="font-size: 2em;"></i>
+            <div class="card-header">Faturamento Mês Passado</div>
+            <div class="card-value">{{ faturamentoMesPassado | currency: ' KZ ' }}</div>
+        </div>
+    </div>
+    
+    <div class="dashboard-grid">
+        <!-- Serviços -->
+        <div class="dashboard-card">
+            <div class="card-header">Serviço Mais Solicitado</div>
+            <div class="service-card-content">
+                <img src="./assets/{{servicoMaisSolicitado?.imagem}}" alt="{{ servicoMaisSolicitado?.nome }}" class="service-image" />
+                <div class="card-value">{{ servicoMaisSolicitado?.nome }}</div>
+            </div>
+        </div>
+        <div class="dashboard-card">
+            <div class="card-header">Serviço Menos Solicitado</div>
+            <div class="service-card-content">
+                <img src="./assets/{{servicoMenosSolicitado?.imagem}}" alt="{{ servicoMenosSolicitado?.nome }}" class="service-image" />
+                <div class="card-value">{{ servicoMenosSolicitado?.nome }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dashboard-grid">
+        <!-- Top 5 Profissionais -->
+        <div class="dashboard-card">
+            <div class="card-header">Top 5 Profissionais</div>
+            <div class="card-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Imagens</th>
+                            <th>Nome</th>
+                            <th>Solicitações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let profissional of top5Profissionais">
+                            <td><img src="./assets/{{profissional?.foto}}" alt="{{profissional.nome}}" class="profissional-image"></td>
+                            <td>{{ profissional.nome }}</td>
+                            <td>{{ profissional.solicitacoes }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

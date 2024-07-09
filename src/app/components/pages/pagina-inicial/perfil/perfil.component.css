@@ -1,0 +1,52 @@
+/* user-profile.component.css */
+.card {
+    margin-bottom: 20px;
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .list-group-item.active {
+    background-color: #27b1c0;
+    border-color: #27b1c0;
+  }
+  
+  .tab-content {
+    margin-top: 20px;
+  }
+  
+  .img-thumbnail {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  /* user-profile.component.css */
+.file-input-wrapper {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .file-input-wrapper input[type='file'] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+  
+  .file-input-wrapper .btn-upload {
+    cursor: pointer;
+    padding: 8px 20px;
+    background-color: #27b1c0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .file-input-wrapper .btn-upload:hover {
+    background-color: #27b1c0;
+  }
+  

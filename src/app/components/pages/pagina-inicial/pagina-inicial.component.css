@@ -1,0 +1,121 @@
+.navconT{
+    background-color: #ededed;
+    height: 50px;
+}
+.navconT div{
+    margin: 0;
+    padding: 0;
+    
+}
+.container{
+    background-color: #f3f3f3;
+    width: 100%;
+}
+.navCT{
+    color: #242424;
+    font-weight: bold;
+}
+.contList li{
+    margin: 10px;
+}
+.bg-dark-K{
+
+    background-color: #ffffff !important;
+
+}
+.logo_container{
+
+    margin-left: 30px;
+}
+.text_Logo{
+
+    color: #722F25;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid ;
+    font-weight: bold;
+    border-radius: 1px;
+
+
+}
+.menu_link li a{
+
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none; /* Remove o sublinhado */
+
+    color: #474747;
+    margin: 2px;
+    font-size: 15px;
+    transition: color 0.3s ease; /* Transição suave de cor */
+
+    
+}
+.menu_link li a:hover{
+
+    color:  #722F25(322, 92%, 79%);
+    transition: color 0.10s ease; /* Transição suave de cor */
+
+    text-decoration: underline !important; /* Adiciona sublinhado ao clicar */
+
+}
+.menu_link li a :active{
+    text-decoration: underline !important; /* Adiciona sublinhado ao clicar */
+    color: #722F25 !important;
+    font-weight: bold;
+
+}
+.active-link{
+    text-decoration: underline !important; /* Adiciona sublinhado ao clicar */
+    color:  #722F25 !important;
+    font-weight: bold;
+}
+
+
+
+.menu_link  {
+
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+ }
+.btn_color {
+    background-color: #a15c4791;
+    color: white;
+    border: 1px solid #a15c4791;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    text-align: center;
+    width: 140px;
+}
+
+.btn_color:hover {
+    background-color: #ffffff;
+    border-color: #a15c4791;
+    color: #a15c4791;
+}
+.notif{
+    margin: 5px;
+}
+.navFoto{
+    margin: 5px;
+}
+.navFoto div{
+    margin: 5px;
+
+}
+.menu{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030; /* Alta prioridade para ficar acima de outros elementos */
+
+}
+
+.barreira_Cor{
+    background-color: #949494;
+}
+.marcacao-verde {
+    background-color: rgb(130, 245, 130) !important; /* ou qualquer cor que você preferir */
+}

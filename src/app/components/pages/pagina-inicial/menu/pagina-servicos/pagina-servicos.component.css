@@ -1,0 +1,55 @@
+.active-link{
+    text-decoration: underline !important; /* Adiciona sublinhado ao clicar */
+    color: #F45EAC !important;
+    font-weight: bold;
+}
+.selected-category {
+    background-color: #f4e05e; /* Cor de fundo desejada para a categoria selecionada */
+    color: #333; /* Cor do texto desejada para a categoria selecionada */
+  }
+  .selected {
+    background-color: #64b1c2; /* Cor de fundo destacada */
+    font-weight: bold; /* Texto em negrito */
+    color: white;
+  }
+
+  img{
+    border-radius: 10px;
+  }
+  .preco {
+    font-size: 1.2rem; /* Tamanho da fonte */
+    color: #25abbe; /* Cor do texto */
+    font-weight: bold; /* Negrito */
+    text-align: center; /* Alinhamento de texto */
+    text-decoration: underline; /* Sublinhado */
+  }
+  .btn{
+    background-color: #25abbe;
+    border: none !important;
+
+  }
+  .btn:hover{
+    background-color: #fff !important;
+    color: #25abbe;
+     border: 1px solid #25abbe !important;
+     border-radius: 5px;
+  }
+  .btn1{
+    background-color: #ff0000 !important;
+  }
+  .btn1:hover{
+    background-color: #fff !important;
+    color: #ff0000;
+     border: 1px solid #ff0000;
+     border-radius: 5px;
+     
+  }
+
+  .card{
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.342);
+    margin-bottom: 20px;
+
+  }
+  

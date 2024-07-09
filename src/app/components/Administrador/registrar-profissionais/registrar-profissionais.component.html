@@ -1,0 +1,65 @@
+<app-menu-lateral></app-menu-lateral>
+
+<div class="backcor">
+    <div class="content first-content">
+        <p-toast></p-toast>
+
+        <div class="second-column">
+            <h4 class="text_div text-center">Adicionar usuário-profissional</h4>
+
+            <form [formGroup]="profissionalForm" (ngSubmit)="onSubmit()" class="form">
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label htmlFor="Nome" class="placeh">Nome do Profissional</label>
+                        <input pInputText type="text" id="Nome" formControlName="nomeCompleto" [pKeyFilter]="blockChars1" placeholder="Nome do Profissional" required />
+                    </div>
+
+                    <div class="input-box">
+                        <label htmlFor="categoriaSelect" class="placeh">Categorias</label>
+                        <p-multiSelect [options]="categorias" formControlName="categoriaId" defaultLabel="Selecione uma ou mais Categorias"></p-multiSelect>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label htmlFor="Email" class="placeh">Email</label>
+                        <input pInputText type="email" id="Email" formControlName="email" [pKeyFilter]="blockChars" placeholder="Email" required />
+                    </div>
+
+                    <div class="input-box">
+                        <label for="fotografia" class="placeh">Fotografia</label>
+                        <div class="card flex justify-content-center">
+                            <p-fileUpload #fileUploadComponent mode="basic" styleClass="p-button-secondary" class="inputLabel1 p-inputtext-lg" chooseLabel="{{ truncatedFileName }}" accept="image/*" (onSelect)="onFileSelect($event, fileUploadComponent)">
+                            </p-fileUpload>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label htmlFor="BI" class="placeh">Nº do Bilhete de Identidade</label>
+                        <input pInputText type="text" id="BI" formControlName="bi" [pKeyFilter]="blockChars" placeholder="XXXXXXXXXAAXXX" required />
+                    </div>
+
+                    <div class="input-box">
+                        <label htmlFor="telefone" class="placeh">Número</label>
+                        <input type="text" id="telefone" formControlName="telefone" class="inputLabel1" pInputText maxlength="9" pKeyFilter="int" placeholder="+244 9XX-XXX-XXX" (input)="enforceNineChars($event)" required />
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label htmlFor="horarioSelect" class="placeh">Horário do Profissional</label>
+                        <p-multiSelect [options]="horarios" formControlName="horariosId" defaultLabel="Selecione os Horários"></p-multiSelect>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-second" [disabled]="botaoDesabilitado">Registrar</button>
+                <div class="lines"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<app-footer class="meu-footer-estilizado"></app-footer>

@@ -1,0 +1,125 @@
+<app-pagina-inicial></app-pagina-inicial>
+
+<div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="carousel-image-wrapper">
+        <img src="../../../assets/gallery/pexels-olly-3757942.jpg" class="d-block w-100 carousel-image" alt="...">
+      </div>
+      <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+        <h1 class="display-3 text-white mb-4">Bem-vindo ao Nosso Spa</h1>
+        <p class="text-white mb-4">Relaxe e desfrute de uma experiência revitalizante.</p>
+        <a href="#" class="btn btn-custom py-3 px-5 mt-2">Saiba Mais</a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="carousel-image-wrapper">
+        <img src="../../../assets/gallery/pexels-gabby-k-6621253.jpg" class="d-block w-100 carousel-image" alt="...">
+      </div>
+      <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+        <h1 class="display-3 text-white mb-4">Tratamentos Personalizados</h1>
+        <p class="text-white mb-4">Cuidados especiais para seu bem-estar.</p>
+        <a href="#" class="btn btn-custom py-3 px-5 mt-2">Saiba Mais</a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="carousel-image-wrapper">
+        <img src="../../../assets/gallery/pexels-cottonbro-3997989.jpg" class="d-block w-100 carousel-image" alt="...">
+      </div>
+      <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+        <h1 class="display-3 text-white mb-4">Ambiente Tranquilo</h1>
+        <p class="text-white mb-4">Desfrute de um momento de paz e tranquilidade.</p>
+        <a href="#" class="btn btn-custom py-3 px-5 mt-2">Saiba Mais</a>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<section>
+
+    <div class="container serv_Des">
+        <div class="row">
+            <h2 class="mt-6">Salão de Beleza KARAPINHA XPTO</h2>
+          <div class="col-md-8">
+            <p>Oferecemos serviços de alta qualidade para cuidar da sua beleza e bem-estar. Nosso salão é dedicado a proporcionar uma experiência excepcional aos nossos clientes, combinando técnicas modernas com um toque de atenção personalizada.</p>
+            <p>Nosso compromisso é fornecer serviços de excelência, utilizando produtos de qualidade e mantendo um ambiente acolhedor e relaxante.</p>
+            <p>Missão: Nosso objetivo é tornar nossos clientes mais confiantes e felizes, proporcionando tratamentos que realcem sua beleza natural e promovam o seu bem-estar.</p>
+            <p>Valores: Qualidade, Profissionalismo, Inovação, Satisfação do Cliente.</p>
+            <p>O que nos torna únicos: Nosso time de profissionais altamente qualificados, o ambiente acolhedor e a atenção aos detalhes fazem do Salão de Beleza XPTO o destino perfeito para cuidar da sua beleza.</p>
+          </div>
+          <div class="col-md-4">
+            <img src="../../../../../assets/images/Salão/Salão_Beleza.jpg" alt="Salão de Beleza" class="img-fluid rounded">
+           <div class="mt-4">
+            <button class="btn btn-primary" [routerLink]="['/sobre']">Ver mais</button>
+           </div>
+            </div>
+        </div>
+      </div>
+      
+
+      <!--
+  <div class="container mt-6 serv_Des">
+    <h2 class="mt-6">Nossos Serviços </h2>
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let grupo of servicosGrupos; let i = index" class="carousel-item" [class.active]="i === 0">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" *ngFor="let servico of grupo">
+              <div class="card h-100">
+                <img src="./assets/{{servico.imagem}}" class="card-img-top" alt="Imagem do Serviço">
+                <div class="card-body">
+                  <h5 class="card-title">{{ servico.nome }}</h5>
+                  <p class="card-text">{{ servico.descricao }}</p>
+                  <p class="card-text"><small class="text-muted">{{ servico.categoriaNome }}</small></p>
+                </div>
+                <div class="card-footer">
+                  <button (click)="onSaberMaisClick($event, servico)" class="btn text-bg-warning">Agendar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  -->
+  <div class="container serv_Des">
+    <h2 class="mt-6">Nossos Serviços </h2>
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div *ngFor="let grupo of servicosGrupos; let i = index" class="carousel-item" [class.active]="i === 0">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let servico of grupo">
+                        <div class="card h-100">
+                            <img src="./assets/{{servico.imagem}}" class="card-img-top" alt="Imagem do Serviço">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ servico.nome }}</h5>
+                                <p class="card-text">{{ servico.descricao }}</p>
+                                <p class="card-text"><small class="text-muted">{{ servico.categoriaNome }}</small></p>
+                                <a (click)="onSaberMaisClick($event, servico)" class="btn booking-btn">Fazer marcação</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+
+<div class="container justify-content-center serv_Des">
+  <app-gallery-photos></app-gallery-photos>
+</div>
+
+<app-footer></app-footer>

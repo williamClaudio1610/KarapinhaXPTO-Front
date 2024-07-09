@@ -1,0 +1,187 @@
+/* Estrutura Básica */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilização de Componentes */
+  .container {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2, h3 {
+    color: #343a40;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 1em;
+    color: #6c757d;
+  }
+  
+  /* Classes Utilitárias Customizadas */
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-5 {
+    margin-top: 3rem !important;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem !important;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .price-tag {
+    font-size: 1.25em;
+    color: #dc3545;
+    font-weight: bold;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .col-md-4 {
+      margin-bottom: 20px;
+    }
+  }
+  /* Estilo personalizado para dropdown vazio */
+.ui-dropdown .ui-dropdown-empty-message {
+    color: red; /* Cor personalizada para a mensagem de vazio */
+    font-style: italic; /* Estilo itálico */
+}
+
+.styled-date {
+    display: block;
+    width: 100%;
+    max-width: 300px; /* Largura máxima do campo */
+    padding: 10px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    background-color: #ffffff; /* Cor de fundo */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Borda arredondada */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
+
+}
+
+.styled-date:focus {
+    border-color: #007bff; /* Cor da borda ao focar */
+    box-shadow: 0 0 8px #007bff(102, 175, 233, 0.6); /* Sombra ao focar */
+    outline: none; /* Remover o outline padrão */
+}
+label{
+    font-weight: bold;
+
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.ui-dropdown, .ui-calendar {
+    width: 100%;
+}
+
+.ui-inputtext {
+    width: 100%;
+    box-sizing: border-box;
+}
+.align-items-center{
+   display: flex;
+   justify-content: center;
+}
+.text-lg-Cal{
+    font-size: 25px;
+}
+
+.btnLT{
+    background-color: #ffffff;
+    color: red;
+    border: none;
+}
+
+.btnLT:hover{
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+}
+.btnLT:focus{
+    background-color: red;
+    color: white;
+    transition: 0.5s black;
+}
+
+
+
+
+.btnFT{
+    background-color: #1a6daf;
+    color: white;
+}
+
+.btnFT:hover{
+    background-color: white;
+    color: #1a6daf;
+    border: 1px solid #1a6daf;
+}
+
+/* marcacoes.component.css */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    margin-bottom: 15px;
+  }
+  
+  .table-responsive {
+    margin-top: 20px;
+  }
+  

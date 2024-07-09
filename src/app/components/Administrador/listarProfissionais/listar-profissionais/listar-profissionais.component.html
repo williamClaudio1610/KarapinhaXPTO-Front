@@ -1,0 +1,74 @@
+<app-menu-lateral></app-menu-lateral>
+
+<div class="card">
+  <p-toast></p-toast>
+
+  <p-fieldset>
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center text-primary">
+        <span class="pi pi-calendar mr-2 text-lg-Cal"></span>
+        <span class="font-bold text-lg">
+          <h4 class="text-center">Gerenciar Funcionários</h4>
+        </span>
+      </div>
+    </ng-template>
+
+    <div class="container mt-4">
+      <!-- Tabela de Profissionais -->
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nome Completo</th>
+                <th>Email</th>
+                <th>Foto</th>
+                <th>BI</th>
+                <th>Telemóvel</th>
+                <th>Horários</th>
+                <th>Categorias</th>
+                <th>
+                  <button pButton type="button" class="btn btnLT" icon="pi pi-trash" (click)="limparTabela()"></button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let profissional of profissionais; let i = index">
+                <td>{{ profissional.nome }}</td>
+                <td>{{ profissional.email }}</td>
+                <td><img src="./assets/{{profissional.foto}}" alt="{{profissional.nome}}" width="50"></td>
+
+               
+                <td>{{ profissional.bi }}</td>
+                <td>{{ profissional.telemovel }}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let horario of profissional.horarios">
+                      {{ horario.horario.hora }}
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li *ngFor="let categoria of profissional.profissionalCategorias">
+                      {{ categoria.categoria.nome }}
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <button pButton type="button" icon="pi pi-trash" class="btn btn-warning"(click)="deleteProfissional(profissional.id)"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </p-fieldset>
+  <p-confirmDialog></p-confirmDialog>
+
+
+  
+</div>
+
+<app-footer></app-footer>

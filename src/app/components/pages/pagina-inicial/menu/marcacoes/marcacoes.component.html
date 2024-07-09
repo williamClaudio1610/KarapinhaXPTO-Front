@@ -1,0 +1,237 @@
+  <app-pagina-inicial></app-pagina-inicial>
+  <div class="card">
+    <p-fieldset>
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center text-primary">
+          <span class="pi pi-calendar mr-2 text-lg"></span>
+          <span class="font-bold text-lg">
+            <h4>Marcações</h4>
+          </span>
+        </div>
+      </ng-template>
+       <p-toast></p-toast>
+      <div class="container mt-4">
+        <!-- Seleção de Categoria -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="categoria">Selecione a Categoria</label>
+              <p-dropdown 
+                [options]="categorias" 
+                [(ngModel)]="categoriaSelecionada" 
+                optionLabel="nome" 
+                placeholder="Selecione a Categoria"
+                (onChange)="onCategoriaChange()"
+                emptyMessage="Nenhuma Categoria disponível"
+                inputId="categoria"
+                filter="true">
+
+                 <!-- Template para personalizar os itens do dropdown -->
+              <ng-template let-categoria pTemplate="item">
+                <div class="flex align-items-center">
+                  <img src="./assets/{{categoria.foto}}" alt="{{ categoria.nome }}" width="30" class="mr-2">
+                  <span>{{ categoria.nome }}</span>
+                </div>
+              </ng-template>
+
+              <!-- Template para personalizar o item selecionado -->
+              <ng-template let-categoria pTemplate="selectedItem">
+                <div class="flex align-items-center">
+                  <img src="./assets/{{categoria?.foto}}" alt="{{ categoria?.nome }}" width="30" class="mr-2">
+                  <span>{{ categoria.nome }}</span>
+                </div>
+              </ng-template>
+                  </p-dropdown>
+                </div>
+              </div>
+
+          <!-- Seleção de Serviço -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="servico">Selecione o Serviço</label>
+              <p-dropdown 
+                [options]="filtrarServicosPorCategoria()" 
+                [(ngModel)]="servicoSelecionado" 
+                optionLabel="nome" 
+                placeholder="Selecione o Serviço"
+                (onChange)="onServicoChange()"
+                emptyMessage="Nenhum Serviço disponível"
+                inputId="servico"
+                filter= "true" >
+
+                  <!-- Template para personalizar os itens do dropdown de serviço -->
+                <ng-template let-servico pTemplate="item">
+                  <div class="flex align-items-center">
+                    <img src="./assets/{{servico.imagem}}" alt="{{ servico.nome }}" width="30" class="mr-2">
+                    <span>{{ servico.nome }}</span>
+                  </div>
+                </ng-template>
+
+                <!-- Template para personalizar o item selecionado -->
+                <ng-template let-servico pTemplate="selectedItem">
+                  <div class="flex align-items-center">
+                    <img src="./assets/{{servico?.imagem}}" alt="{{ servico?.nome }}" width="30" class="mr-2">
+                    <span>{{ servico?.nome }}</span>
+                  </div>
+                </ng-template>
+                
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seleção de Profissional e Data -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="profissional">Selecione o Profissional</label>
+              <p-dropdown 
+                [options]="profissionaisFiltrados" 
+                [(ngModel)]="profissionalSelecionado" 
+                optionLabel="nome" 
+                placeholder="Selecione o Profissional"
+                (onChange)="filtrarHorariosPorProfissional()"
+                emptyMessage="Nenhum Profissional disponível"
+                inputId="profissional"
+                filter= "true" >
+
+                      <!-- Template para personalizar os itens do dropdown de profissional -->
+                <ng-template let-profissional pTemplate="item">
+                  <div class="flex align-items-center">
+                    <img src="./assets/{{profissional.foto}}" alt="{{ profissional.nome }}" width="30" class="mr-2">
+                    <span>{{ profissional.nome }}</span>
+                  </div>
+                </ng-template>
+
+                <!-- Template para personalizar o item selecionado -->
+                <ng-template let-profissional pTemplate="selectedItem">
+                  <div class="flex align-items-center">
+                    <img src="./assets/{{profissional?.foto}}" alt="{{ profissional?.nome }}" width="30" class="mr-2">
+                    <span>{{ profissional?.nome }}</span>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="data">Selecione a Data</label>
+              <input 
+                type="date" 
+                class="form-control" 
+                [(ngModel)]="dataSelecionada"
+                [min]="getMinDate()"
+                inputId="data"
+                (change)="filtrarHorariosPorProfissional()">
+            </div>
+          </div>
+        </div>
+
+        <!-- Seleção de Horário -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="horario">Selecione o Horário</label>
+              <p-dropdown 
+                [options]="horariosDisponiveis" 
+                [(ngModel)]="horaSelecionada" 
+                optionLabel="hora" 
+                placeholder="Selecione o Horário"
+                emptyMessage="Nenhum horário disponível"
+                inputId="horario"
+                filter="true"
+                optionDisabled="disabled">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- Botão para Adicionar Serviço -->
+        <div class="row mb-4">
+          <div class="col-md-12 text-center">
+            <button 
+              pButton 
+              type="button" 
+              class="btn btn-primary"   
+              icon="pi pi-check" 
+              (click)="adicionarServico()">
+              Adicionar Serviço
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabela de Serviços Selecionados -->
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <table #tabelaServicos class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th>Serviço</th>
+                  <th>Profissional</th>
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Preço</th>
+                  <th>Estado</th>
+                  <th>Operações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let servico of servicosMarcados; let i = index">
+                  <td>{{ servico.categoria.nome }}</td>
+                  <td>{{ servico.servico.nome }}</td>
+                  <td>{{ servico.profissional.nome }}</td>
+                  <td>{{ servico.data | date: 'dd/MM/yyyy' }}</td>
+                  <td>{{ servico.hora.hora }}</td>
+                  <td>{{ servico.preco | currency: 'KZ' }}</td>
+                  <td>{{ servico.estado }}</td>
+                  <td>
+                    <button 
+                      pButton 
+                      type="button" 
+                      icon="pi pi-trash" 
+                      class="btn btn-danger" 
+                      (click)="eliminarServico(i)">
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <strong>Total:</strong>
+                  </td>
+                  <td>{{ calcularTotalPreco() | currency: 'KZ' }}</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="8" class="text-end">
+                    <button 
+                      pButton 
+                      type="button" 
+                      class="btn btn-danger" 
+                      (click)="limparTabela()">
+                      Limpar Tabela
+                    </button>
+                    <button 
+                      pButton 
+                      type="button" 
+                      class="btn btn-success ms-2" 
+                      (click)="finalizarMarcacoes()">
+                      Agendar
+                    </button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </p-fieldset>
+    <p-confirmDialog></p-confirmDialog>
+
+  </div>
+  <app-footer></app-footer>

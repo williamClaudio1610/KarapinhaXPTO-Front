@@ -1,0 +1,68 @@
+<app-pagina-inicial></app-pagina-inicial>
+
+<div class="card">
+    <p-fieldset>
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center text-primary ">
+                <span class="pi pi-calendar mr-2 text-lg-Cal"></span>
+                <span class="font-bold text-lg">
+                    <h4 >Lista dos Funcionários</h4>
+                </span>
+            </div>
+        </ng-template>
+        
+        <div class="container mt-4">
+
+
+
+           <!-- Tabela de Serviços Selecionados -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome Completo</th>
+                        <th>Categoria</th>
+                        <th>Profissional</th>
+                        <th>Email</th>
+                        <th>Foto</th>
+                        <th>Preço</th>
+                        <th>BI</th>
+                        <th>Telemóvel</th>
+                        <th>Horário</th>
+                        <th>
+                        <div class="col-md-6">
+                            <button pButton type="button" class="btn btnLT" icon="pi pi-trash" (click)="limparTabela()"></button>
+                        </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let servico of servicosMarcados; let i = index">
+                        <td>{{ servico.categoria.nome }}</td>
+                        <td>{{ servico.servico.nome }}</td>
+                        <td>{{ servico.profissional.nome }}</td>
+                        <td>{{ servico.data | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ servico.hora }}</td>
+                        <td>{{servico.servico.preco}}</td>
+                        <td>{{ Estado }}</td>
+                        <td>
+                        <button pButton type="button" icon="pi pi-trash" class="btn btn-warning" (click)="Eliminar(i)"></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    
+                </table>
+                </div>
+            </div>
+  
+  
+        </div>
+
+
+    </p-fieldset>
+</div>
+
+
+
+
